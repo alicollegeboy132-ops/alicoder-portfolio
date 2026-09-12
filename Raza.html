@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AliCoder- Smart Logistics Solutions</title>
+<style>
+    * {
+        margin: 0; padding: 0; box-sizing: border-box;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    body { background: #fff; color: #333; }
+    
+    header {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 20px 8%; background: #0a1e3a; color: #fff;
+        position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 24px; font-weight: 700; }
+    .logo span { color: #ff7a00; }
+    nav a{color:#fff;text-decoration:none;margin:0 15px;font-size: 15px;transition: 0.3s;}
+    nav a:hover{color: blue; }
+    .btn { background: #ff7a00; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+
+    .hero {
+        background: linear-gradient(rgba(10,30,58,0.85), rgba(10,30,58,0.85)), url('https://images.unsplash.com/photo-1586528115956-fa6926b20c6b?q=80') center/cover;
+        color: #fff; padding: 100px 8%;
+        display: flex; align-items: center; justify-content: space-between;
+    }
+    .hero-text h1 { font-size: 48px; line-height: 1.2; margin-bottom: 20px; }
+    .hero-text h1 span { color: #ff7a00; }
+    .hero-buttons { margin-top: 30px; }
+    .btn-outline { border: 2px solid #fff; padding: 12px 24px; border-radius: 6px; color: #fff; text-decoration: none; margin-left: 15px; }
+    .stats { display: flex; gap: 40px; margin-top: 50px; }
+    .stat h3 { font-size: 28px; color: #ff7a00; }
+    .stat p { font-size: 14px; color: #ccc; }
+
+    .section { padding: 80px 8%; }
+    .section-title { text-align: center; margin-bottom: 50px; }
+    .section-title h2 { font-size: 36px; color: #0a1e3a; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .service-card { background: #f8f9fa; padding: 30px; border-radius: 10px; text-align: center; }
+    .service-card h4 { color: #0a1e3a; margin: 15px 0; }
+
+    .about { background: #0a1e3a; color: #fff; padding: 80px 8%; display: flex; gap: 50px; align-items: center; }
+    .about-text h2 { font-size: 36px; margin-bottom: 20px; }
+    .about-text h2 span { color: #ff7a00; }
+    .badge { background: #ff7a00; padding: 20px; border-radius: 50%; display: inline-block; }
+
+    .track { padding: 80px 8%; display: flex; gap: 50px; align-items: center; }
+    .track-img { position: relative; }
+    .track-card { position: absolute; bottom: 20px; right: -20px; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+
+    .cta { background: #0a1e3a; color: #fff; padding: 60px 8%; text-align: center; border-radius: 15px; margin: 80px 8%; }
+    .cta h2 span { color: #ff7a00; }
+
+    footer { background: #061428; color: #aaa; padding: 60px 8%; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-grid h4 { color: #fff; margin-bottom: 20px; }
+    .footer-grid a { color: #aaa; text-decoration: none; display: block; margin: 10px 0; }
+
+    @media(max-width: 900px) {
+        .hero, .about, .track { flex-direction: column; }
+        .services-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="logo">A <span>AliCoder</span></div>
+    <nav>
+        <a href="#">Home</a><a href="#">Services</a><a href="#">About</a><a href="#">Blog</a><a href="#">Pages</a>
+    </nav>
+    <a href="#" class="btn">Get a Quote</a>
+</header>
+<section class="hero">
+    <div class="hero-text">
+        <h1>Smart Logistics <br><span>Strong Connections</span> <br>Global Solutions</h1>
+        <div class="hero-buttons">
+            <a href="#" class="btn">Our Services</a>
+            <a href="#" class="btn-outline">Learn More</a>
+        </div>
+        <div class="stats">
+            <div class="stat"><h3>120+</h3><p>Countries</p></div>
+            <div class="stat"><h3>98%</h3><p>On-Time</p></div>
+            <div class="stat"><h3>25K+</h3><p>Clients</p></div>
+            <div class="stat"><h3>150+</h3><p>Experts</p></div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="section-title">
+        <p style="color:#ff7a00">OUR SERVICES</p>
+        <h2>End-to-End Logistics Solutions</h2>
+    </div>
+    <div class="services-grid">
+        <div class="service-card"><h4>Sea Freight</h4><p>Global ocean shipping solutions</p></div>
+        <div class="service-card"><h4>Air Freight</h4><p>Fast international air cargo</p></div>
+        <div class="service-card"><h4>Road Transport</h4><p>Reliable ground delivery</p></div>
+        <div class="service-card"><h4>Warehousing</h4><p>Secure storage facilities</p></div>
+        <div class="service-card"><h4>Customs Clearance</h4><p>Hassle-free documentation</p></div>
+        <div class="service-card"><h4>Supply Chain</h4><p>End-to-end management</p></div>
+    </div>
+</section>
+<section class="about">
+    <div class="about-text">
+        <h2>Fast, Reliable & <br><span>Always on Time</span></h2>
+        <p>We deliver logistics solutions with speed and precision across the globe.</p>
+        <a href="#" class="btn" style="margin-top:20px; display:inline-block;">Get Started</a>
+    </div>
+    <div>
+        <div class="badge"><h2>25+</h2><p>Years Experience</p></div>
+    </div>
+</section>
+<section class="track">
+    <div>
+        <p style="color:#ff7a00">TRACK YOUR SHIPMENT</p>
+        <h2>Track Your Shipment <br>In <span style="color:#ff7a00">Real-Time</span></h2>
+        <a href="#" class="btn" style="margin-top:20px; display:inline-block;">Track Now</a>
+    </div>
+    <div class="track-img">
+        <img src="images" width="400" style="border-radius:10px;">
+        <div class="track-card">
+            <p><b>Shipment Status</b></p>
+            <p>In Transit</p>
+        </div>
+    </div>
+</section>
+<section class="cta">
+    <h2>Ready to <span>Simplify</span> Your Logistics?</h2>
+    <a href="#" class="btn" style="margin-top:20px; display:inline-block;">Contact Us</a>
+</section>
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h4>A AliCoder</h4>
+            <p>We are a global logistics company providing smart solutions worldwide.</p>
+        </div>
+        <div><h4>Quick Links</h4><a href="#">Home</a><a href="#">About</a><a href="#">Blog</a></div>
+        <div><h4>Services</h4><a href="#">Sea Freight</a><a href="#">Air Freight</a><a href="#">Warehousing</a></div>
+        <div><h4>Support</h4><a href="#">FAQ</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+        <div><h4>Contact Us</h4><a href="#">info@antixor.com</a><a href="#">+1 234 567 890</a></div>
+    </div>
+</footer>
+
+</body>
+</html>
