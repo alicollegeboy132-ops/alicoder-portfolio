@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamFlix - Watch Anything</title>
+  <style type="text/css">
+     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* GLASS NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px); /* Glass effect */
+  transition:  0.3s;
+}
+
+.navbar:hover { background: rgba(0,0,0,0.8); }
+
+.navbar img { width: 140px; }
+.nav-right { display: flex; gap: 20px; align-items: center; }
+
+.lang-select {
+  background: transparent;
+  color: white;
+  border: 1px solid #aaa;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+/* BUTTON */
+.btn {
+  background: #e50914;
+  color: white;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+.btn:hover { background: #f40612; transform: scale(1.05); }
+
+.btn-lg {
+  padding: 16px 28px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* HERO SECTION */
+.showcase {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.overlay {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(to top, #000 0%, transparent 60%, #000 100%);
+}
+
+.showcase-content { 
+  z-index: 10; 
+  max-width: 800px;
+  animation: fadeInUp 1s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.showcase-content h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px #000;
+}
+
+.subtitle { font-size: 1.6rem; margin-bottom: 20px; }
+.cta-text { font-size: 1.2rem; margin-bottom: 20px; }
+
+.email-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.email-form input {
+  padding: 18px;
+  width: 450px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 16px;
+}
+
+/* FEATURE SECTION */
+.feature {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 80px 60px;
+  border-top: 8px solid #222;
+}
+.feature-text h2 { font-size: 3rem; margin-bottom: 20px; }
+.feature-text p { font-size: 1.5rem; }
+.feature img { width: 500px; }
+
+/* MOVIE ROWS */
+.container {
+  padding: 40px 60px;
+  border-top: 8px solid #222;
+}
+.container h2 { margin: 25px 0; font-size: 1.6rem; }
+
+.movie-row {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  scroll-behavior: smooth;
+}
+.movie-row::-webkit-scrollbar { height: 8px; }
+.movie-row::-webkit-scrollbar-thumb { background: #e50914; border-radius: 10px; }
+
+.movie-row img {
+  width: 220px;
+  border-radius: 8px;
+  transition: all 0.4s cubic-bezier(.47,1.64,.41,.8);
+  cursor: pointer;
+}
+.movie-row img:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(229,9,20,0.7);
+  z-index: 5;
+}
+
+/* FOOTER */
+.footer {
+  padding: 50px 60px;
+  border-top: 8px solid #222;
+  color: #757575;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .navbar { padding: 20px; }
+  .feature { flex-direction: column; text-align: center; }
+  .feature img { width: 90%; }
+  .email-form { flex-direction: column; align-items: center; }
+  .email-form input { width: 90%; }
+  .showcase-content h1 { font-size: 2.2rem; }
+}
+
+  </style>
+</head>
+<body>
+  <!-- HERO SECTION -->
+  <header class="showcase">
+    <!-- Glass Navbar -->
+    <nav class="navbar">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" alt="Logo">
+      <div class="nav-right">
+        <select class="lang-select">
+          <option>English</option>
+          <option>Urdu</option>
+        </select>
+        <a href="#" class="btn">Sign In</a>
+      </div>
+    </nav>
+    
+    <div class="showcase-content">
+      <h1>Unlimited movies, TV shows and more</h1>
+      <p class="subtitle">Watch anywhere. Cancel anytime.</p>
+      <p class="cta-text">Ready to watch? Enter your email to create or restart your membership.</p>
+      <div class="email-form">
+        <input type="email" placeholder="Email address" required>
+        <button class="btn btn-lg">Get Started <span>></span></button>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- FEATURE SECTION -->
+  <section class="feature">
+    <div class="feature-text">
+      <h2>Enjoy on your TV</h2>
+      <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV and more.</p>
+    </div>
+    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="TV">
+  </section>
+
+  <!-- MOVIE ROWS -->
+  <section class="container">
+    <h2>🔥 Trending Now</h2>
+    <div class="movie-row" id="trending"></div>
+
+    <h2>⭐ Popular on StreamFlix</h2>
+    <div class="movie-row" id="popular"></div>
+
+    <h2>🎬 New Releases</h2>
+    <div class="movie-row" id="new"></div>
+  </section>
+
+  <footer class="footer">
+    <p>Questions? Call 000-800-919-1694</p>
+  </footer>
+
+  <script type="text/javascript">
+    
+const trendingMovies = [
+  'https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg',
+  'https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg',
+  'https://image.tmdb.org/t/p/w500/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg',
+  'https://image.tmdb.org/t/p/w500/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg',
+  'https://image.tmdb.org/t/p/w500/uUiIGztXRVWyqT7dQ6T0YRyQ1I.jpg',
+  'https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51Q3.jpg'
+];
+
+const popularMovies = [
+  'https://image.tmdb.org/t/p/w500/9Gtg2DzBhmYamXBS1hKAqiRGZEf.jpg',
+  'https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg',
+  'https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg',
+  'https://image.tmdb.org/t/p/w500/pFlaoHTZeyNkG83vxsAJiGzfSJe.jpg',
+  'https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg'
+];
+
+const newMovies = [
+  'https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg',
+  'https://image.tmdb.org/t/p/w500/4j0PNHkMr5CwDvIYZhA3gG8h4z8.jpg',
+  'https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg'
+];
+
+function loadMovies(movieArray, containerId) {
+  const container = document.getElementById(containerId);
+  movieArray.forEach(movie => {
+    const img = document.createElement('img');
+    img.src = movie;
+    container.appendChild(img);
+  });
+}
+
+loadMovies(trendingMovies, 'trending');
+loadMovies(popularMovies, 'popular');
+loadMovies(newMovies, 'new');
+
+  </script>
+</body>
+</html>

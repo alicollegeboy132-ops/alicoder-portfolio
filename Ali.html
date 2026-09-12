@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenova - Renewable Energy</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body{
+            background: #f5f7f2;
+            color: #1a2e1a;
+        }
+        .container{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .logo{
+            font-weight:700;
+            font-size:22px;
+            color:#2d6a4f;
+        }
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center; padding: 20px 0;
+        }
+        .logo span{
+            color:#95d5b2;
+        }
+        nav ul{
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        .btn-contact{
+            background:#2d6a4f;
+            color: #fff;
+            padding: 8px 18px; border-radius:20px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .hero{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .hero-left{
+            flex: 1;
+        }
+        .hero-left h1{
+            font-size: 42px;
+            line-height: 1.2;
+        }
+        .hero-left h1 span{
+            color: #2d6a4f;
+        }
+        .hero-leftp{
+            color: #666;
+            margin: 15px 0;
+        }
+        .btn-explore{
+            background: #2d6a4f;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center; gap: 8px;
+        }
+        .hero-right{
+            flex: 1;
+            position: relative;
+        }
+        .hero-right img{
+            width: 100%;
+            border-radius: 20px;
+        }
+        .floating-card{
+            position: absolute;
+            right: 20px;
+            top: 40%;
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            width: 200px;
+        }
+        .stats{
+            display: flex;
+            gap: 20px;
+            border-radius: 15px;
+            background:#2d6a4f ;
+            padding: 20px;
+            margin-top: -30px;
+            position: relative;
+        }
+        .stat-item{
+            color: #fff;
+            display: flex;
+            align-items: center; gap: 10px;
+        }
+        .stat-item .icon{
+            background: #95d5b2;
+            padding: 8px;
+            border-radius: 50%;
+        }
+        .section{
+            margin:80px 0;
+        }
+        .section h2{
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .who{
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .who img{
+            width: 50%;
+            border-radius: 15px;
+        }
+        .stats-box{
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .stats-box div{
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .stats-box h3{
+            color:#2d6a4f;
+            font-size: 24px;
+        }
+        .services{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .service-card{
+             background: #fff;
+             padding: 25px;
+             border-radius: 15px;
+             text-align: center;
+             box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .service-card .icon{
+            font-size: 30px;
+            color: #2d6a4f;
+            margin-bottom: 1px;
+        }
+        footer{
+            background:#1a2e1a;
+            color:#fff;
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+
+        }
+        @media(max-width:900px){
+            .hero,.who{
+                flex-direction: column;
+            }
+            .services{
+                grid-template-columns: repeat(2,1fr);
+            }
+            .who img{
+                width: 100%;
+            }
+        }
+            
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">Green<span>ova</span></div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Solutions</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Resources</a></li>
+                
+            </ul>
+            <a href="#" class="btn-contact">Contact Us</a>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-left">
+                <h1>Powering a<span>Greener Future</span> <br>With Renewable Energy</h1>
+                <p>We deliver innovative and sustainable energy solutions for a cleaner tomorrow.</p>
+                <a href="#" class="btn-explore">Explore Solutions</a>
+            </div>
+            <div class="hero-right">
+                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600" alt="wind turbine">
+                 <div class="floating-card">
+                    <strong> clean Energy for a Better Tomorrow</strong>
+                    <p style="font-size: 12px; color: #666;">Join Us in building a sustainable future.</p>
+
+                 </div>
+            </div>
+        </section>
+        <div class="stats">
+            <div class="stats-item">
+                <div class="icon">🌱</div>
+                <div>Sustainable<br>Solutions</div>
+            </div>
+            <div class="stat-item">
+                <div class="icon">⚡</div>
+                <div>Renewable<br>Reliable Energy</div>
+            </div>
+            <div class="stat-item">
+                <div class="icon">🌍</div>
+                <div>Responsible<br>For our Planet</div>
+            </div>
+            
+        </div>
+        <section class="section who">
+            <div>
+                <p style="color:#2d6a4f; font-size:12px;">WHO WE ARE</p>
+                <h2>WHO WE ARE and <br>Why We Care</h2>
+                <p style="color: #666; margin: 15px 0;">
+                    We are committed to sustainable solutions for communities and environment.
+                </p>
+                <a href="#" class="btn-explore" style="background: #fff; color: #2d6a4f; border: 1px solid #2d6a4f;">Learn More</a>
+
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500" alt="Solar Workers">
+                <div class="stats-box">
+                    <div> <h3>10+</h3> <p>Years</p>
+                    </div>
+                    <div><h3>250+</h3><p>Projects</p>
+                    </div>
+                    <div><h3>95%</h3> <p>Statisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <h2 style="text-align: center;">The Right Renewable<br>Energy Solutions</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="icon">☀️</div>
+                    <h4>Solar Energy</h4>
+                    <p>Clean Power from the sun</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">💨</div>
+                    <h4>Wind Energy</h4>
+                    <p>Harnessing Wind Power</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="icon">🔋</div>
+                    <h4> Energy Storage</h4>
+                    <p>Reliable Power Backup</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">📊</div>
+                    <h4>Consulting</h4>
+                    <p>Expert energy guidance</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>2026 Greenova. powering a Greener Future.</p>
+    </footer>
+</body>
+</html>
