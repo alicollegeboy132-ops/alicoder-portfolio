@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{
+ background:#061a4a;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ min-height:100vh;
+ padding:20px;
+}
+.card{
+ width:680px;
+ background:#fff;
+ border-radius:24px;
+ display:flex;
+ overflow:hidden;
+ box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+.left{
+ width:42%;
+ background:#476cfa;
+ border-radius:0 0 120px 0;
+ border-top-left-radius:24px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ padding:40px 20px;
+ color:#fff;
+ text-align:center;
+}
+.left h2{font-size:24px;margin-bottom:8px}
+.left p{font-size:12px;opacity:.9;margin-bottom:20px}
+.left button{
+ background:transparent;
+ border:2px solid #fff;
+ color:#fff;
+ padding:10px 28px;
+ border-radius:10px;
+ cursor:pointer;
+ font-weight:600;
+}
+.right{
+ width:58%;
+ padding:35px 40px;
+}
+.right h1{
+ text-align:center;
+ font-size:28px;
+ margin-bottom:22px;
+}
+.input-box{
+ position:relative;
+ margin-bottom:16px;
+}
+.input-box input{
+ width:100%;
+ background:#f5f6fa;
+ border:none;
+ padding:12px 40px 12px 16px;
+ border-radius:8px;
+ outline:none;
+ font-size:13px;
+}
+.input-box i{
+ position:absolute;
+ right:12px;
+ top:50%;
+ transform:translateY(-50%);
+ font-size:14px;
+}
+.forgot{
+ text-align:center;
+ font-size:12px;
+ margin:6px 0 16px;
+ cursor:pointer;
+}
+.btn-login{
+ width:100%;
+ background:#476cfa;
+ color:#fff;
+ border:none;
+ padding:12px;
+ border-radius:8px;
+ font-weight:600;
+ cursor:pointer;
+}
+.or{
+ text-align:center;
+ font-size:11px;
+ margin:16px 0;
+ color:#555;
+}
+.social{
+ display:flex;
+ justify-content:center;
+ gap:12px;
+}
+.social div{
+ width:38px;
+ height:38px;
+ border:1px solid #e5e5e5;
+ border-radius:8px;
+ display:grid;
+ place-items:center;
+ font-weight:700;
+ font-size:14px;
+ cursor:pointer;
+ background:#fff;
+}
+@media(max-width:650px){
+ .card{flex-direction:column}
+ .left{width:100%;border-radius:24px 24px 120px 120px;padding:30px}
+ .right{width:100%;padding:25px}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="left">
+    <h2>Hello, Welcome!</h2>
+    <p>Don't have an account?</p>
+    <button>Register</button>
+  </div>
+  <div class="right">
+    <h1>Login</h1>
+    <div class="input-box">
+      <input type="text" placeholder="Username">
+      <i>👤</i>
+    </div>
+    <div class="input-box">
+      <input type="password" placeholder="Password">
+      <i>🔒</i>
+    </div>
+    <div class="forgot">Forgot Password?</div>
+    <button class="btn-login">Login</button>
+    <div class="or">or login with social platforms</div>
+    <div class="social">
+      <div>G</div>
+      <div>f</div>
+      <div>◉</div>
+      <div>in</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

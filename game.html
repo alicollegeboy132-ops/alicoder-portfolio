@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALi CODER - 3D Game UI</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ height:100vh;overflow:hidden;background:#05070f;
+ font-family:'Rajdhani',sans-serif;color:#fff;
+ perspective:1000px;
+}
+.bg{
+ position:absolute;inset:0;
+ background:radial-gradient(circle at 50% 20%, #1a2aff55, transparent 60%), 
+            url('https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1400') center/cover;
+ filter:brightness(.6);
+}
+.vignette{position:absolute;inset:0;background:radial-gradient(transparent 60%, black 100%)}
+.header{
+ position:relative;display:flex;justify-content:space-between;padding:18px 30px;align-items:center;z-index:2
+}
+.logo{font-family:'Orbitron';font-size:22px;letter-spacing:2px;text-shadow:0 0 15px #00f2ff}
+.logo span{color:#00f2ff}
+.stats{display:flex;gap:12px}
+.chip{background:linear-gradient(180deg,#222a,#111a);border:1px solid #ffffff22;padding:7px 14px;border-radius:20px;display:flex;gap:8px;align-items:center;font-size:14px;backdrop-filter:blur(10px)}
+.chip b{color:#ffd700}
+
+.center{
+ position:relative;z-index:2;display:flex;height:calc(100vh - 80px);padding:20px 30px;gap:20px
+}
+.left-menu{width:220px;display:flex;flex-direction:column;gap:10px}
+.menu-item{
+ padding:14px 18px;background:linear-gradient(90deg,#ffffff10,#ffffff05);
+ border:1px solid #ffffff15;border-left:3px solid transparent;
+ border-radius:10px;cursor:pointer;transition:.3s;transform-style:preserve-3d
+}
+.menu-item:hover{transform:translateZ(20px) translateX(8px);background:#ffffff15;border-left-color:#00f2ff;box-shadow:0 0 20px #00f2ff55}
+.menu-item.active{border-left-color:#ff0055;background:linear-gradient(90deg,#ff005522,#ffffff05);box-shadow:0 0 25px #ff005544}
+.menu-item i{margin-right:10px}
+
+.hero{
+ flex:1;display:flex;align-items:center;justify-content:center;position:relative;
+ transform-style:preserve-3d
+}
+.card-3d{
+ width:420px;height:520px;position:relative;
+ background:linear-gradient(180deg,#1c2033ee,#0a0d1aee);
+ border:1px solid #ffffff22;border-radius:24px;
+ transform:rotateY(-12deg) rotateX(8deg);
+ box-shadow:0 30px 80px #000, 0 0 0 1px #ffffff11 inset, 0 0 40px #00f2ff22 inset;
+ transition:.6s;transform-style:preserve-3d
+}
+.card-3d:hover{transform:rotateY(0deg) rotateX(0deg) translateZ(30px)}
+.char{
+ position:absolute;bottom:0;left:50%;transform:translateX(-50%) translateZ(60px);
+ width:100%;height:90%;object-fit:cover;filter:drop-shadow(0 20px 30px #000);
+ pointer-events:none
+}
+.glow-text{
+ position:absolute;top:30px;left:30px;transform:translateZ(80px)
+}
+.glow-text h1{font-family:'Orbitron';font-size:42px;line-height:1;text-shadow:0 0 20px #ff0055}
+.glow-text h1 span{color:#00f2ff}
+.glow-text p{opacity:.6;margin-top:8px;letter-spacing:2px}
+
+.actions{
+ position:absolute;bottom:25px;left:20px;right:20px;display:flex;gap:12px;transform:translateZ(50px)
+}
+.btn{
+ flex:1;padding:14px;border-radius:12px;border:0;cursor:pointer;
+ font-family:'Orbitron';font-weight:700;letter-spacing:1px;transition:.3s
+}
+.btn-play{background:linear-gradient(90deg,#00f2ff,#0066ff);color:#000;box-shadow:0 0 20px #00f2ff88}
+.btn-play:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 0 35px #00f2ff}
+.btn-store{background:#ffffff12;color:#fff;border:1px solid #ffffff22}
+
+.right-panel{width:300px;display:flex;flex-direction:column;gap:14px}
+.weapon-box{
+ background:linear-gradient(180deg,#ffffff0f,#ffffff05);border:1px solid #ffffff18;border-radius:16px;padding:14px;
+ transform:rotateY(12deg);transform-style:preserve-3d;transition:.4s
+}
+.weapon-box:hover{transform:rotateY(0) translateZ(20px)}
+.weapon-box h3{font-size:13px;letter-spacing:2px;opacity:.7;margin-bottom:10px}
+.weapon{display:flex;align-items:center;gap:12px;padding:8px;border-radius:10px;cursor:pointer}
+.weapon:hover{background:#ffffff10}
+.weapon img{width:80px;height:40px;object-fit:contain;filter:drop-shadow(0 0 10px #00f2ff88)}
+.weapon b{font-family:'Orbitron';font-size:13px}
+.level-bar{height:6px;background:#ffffff22;border-radius:10px;overflow:hidden;margin-top:8px}
+.level-bar div{height:100%;width:70%;background:linear-gradient(90deg,#00f2ff,#ff0055);box-shadow:0 0 10px #00f2ff}
+
+.bottom-bar{position:absolute;bottom:0;left:0;right:0;padding:10px 30px;display:flex;justify-content:space-between;z-index:3;background:linear-gradient(transparent,#000a)}
+.online{display:flex;gap:8px;align-items:center;font-size:13px}
+.dot{width:8px;height:8px;background:#00ff88;border-radius:50%;box-shadow:0 0 10px #00ff88;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.3}}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="vignette"></div>
+
+<div class="header">
+ <div class="logo">ALI <span>CODER</span> OPS</div>
+ <div class="stats">
+  <div class="chip">💰 <b>12,540</b></div>
+  <div class="chip">💎 <b>850</b></div>
+  <div class="chip">🏆 LVL <b>75</b></div>
+ </div>
+</div>
+
+<div class="center">
+ <div class="left-menu">
+  <div class="menu-item active">▶ PLAY</div>
+  <div class="menu-item">🎒 INVENTORY</div>
+  <div class="menu-item">⚙️ LOADOUT</div>
+  <div class="menu-item">🗺️ MAPS</div>
+  <div class="menu-item">👥 CLAN</div>
+  <div class="menu-item">⚙️ SETTINGS</div>
+ </div>
+
+ <div class="hero">
+  <div class="card-3d" id="card">
+   <div class="glow-text">
+    <h1>ALPHA<br><span>LEGEND</span></h1>
+    <p>SEASON 7 • BATTLE READY</p>
+   </div>
+   <img class="char" src="https://i.ibb.co/3yZ0d2p/gun-character-png.png" onerror="this.src='https://cdn3d.iconscout.com/3d/premium/thumb/soldier-3d-model-8332455-6693532.png'">
+   <div class="actions">
+    <button class="btn btn-play" onclick="play()">PLAY NOW</button>
+    <button class="btn btn-store">STORE</button>
+   </div>
+  </div>
+ </div>
+
+ <div class="right-panel">
+  <div class="weapon-box">
+   <h3>EQUIPPED WEAPONS</h3>
+   <div class="weapon"><img src="https://pngimg.com/d/ak47_PNG1547.png"><div><b>AKM - GLACIER</b><br><small style="opacity:.6">DMG 92 • RNG 60</small></div></div>
+   <div class="weapon"><img src="https://pngimg.com/d/sniper_rifle_PNG14.png"><div><b>AWM - NEON</b><br><small style="opacity:.6">DMG 98 • RNG 95</small></div></div>
+   <div class="level-bar"><div></div></div>
+  </div>
+  <div class="weapon-box">
+   <h3>DAILY MISSION</h3>
+   <p style="font-size:13px;margin:6px 0">Win 3 matches • <b style="color:#00f2ff">2/3</b></p>
+   <div class="level-bar"><div style="width:66%"></div></div>
+  </div>
+ </div>
+</div>
+
+<div class="bottom-bar">
+ <div class="online"><div class="dot"></div> 12,402 Players Online • Server: Asia</div>
+ <div style="opacity:.6;font-size:12px;letter-spacing:1px">v2.6.0 • ALICODER32-OPS</div>
+</div>
+
+<script>
+// 3D mouse follow
+const card=document.getElementById('card')
+document.addEventListener('mousemove',e=>{
+ let x=(e.clientX/window.innerWidth - 0.5)*20
+ let y=(e.clientY/window.innerHeight - 0.5)*-20
+ card.style.transform=`rotateY(${x}deg) rotateX(${y}deg) translateZ(20px)`
+})
+function play(){
+ card.style.transform=`scale(1.2) rotateY(360deg)`
+ setTimeout(()=>alert('Game Starting... Ali Coder OPS 🔥'),400)
+}
+</script>
+</body>
+</html>

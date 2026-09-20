@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Clone - Ali Coder</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Roboto,Arial,sans-serif}
+body{background:#0f0f0f;color:#fff}
+header{
+ position:sticky;top:0;z-index:100;
+ display:flex;justify-content:space-between;align-items:center;
+ padding:10px 16px;background:#0f0f0f;gap:20px
+}
+.left{display:flex;align-items:center;gap:16px}
+.left i{font-size:20px;cursor:pointer}
+.logo{display:flex;align-items:center;gap:2px;font-size:20px;font-weight:700}
+.logo span{color:red}
+.center{display:flex;flex:1;max-width:650px}
+.center input{
+ flex:1;background:#121212;border:1px solid #303030;
+ padding:12px 16px;border-radius:20px 0 0 20px;color:#fff;outline:none
+}
+.center button{
+ background:#222;border:1px solid #303030;border-left:0;
+ padding:0 22px;border-radius:0 20px 20px 0;cursor:pointer;color:#fff
+}
+.center .mic{margin-left:12px;width:40px;height:40px;background:#272727;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.right{display:flex;align-items:center;gap:18px}
+.right i{font-size:18px;cursor:pointer}
+.right img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+
+.layout{display:flex}
+.sidebar{
+ width:230px;background:#0f0f0f;padding:12px;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto
+}
+.sidebar .item{
+ display:flex;align-items:center;gap:20px;padding:9px 10px;border-radius:10px;cursor:pointer;font-size:14px
+}
+.sidebar .item:hover{background:#272727}
+.sidebar .item.active{background:#272727}
+.sidebar hr{border:0;border-top:1px solid #272727;margin:12px 0}
+.sidebar h4{font-size:14px;padding:10px}
+
+.chips{
+ display:flex;gap:8px;padding:12px 16px;overflow-x:auto;white-space:nowrap;background:#0f0f0f;position:sticky;top:56px;z-index:50
+}
+.chips::-webkit-scrollbar{display:none}
+.chip{padding:7px 12px;background:#272727;border-radius:8px;font-size:14px;cursor:pointer}
+.chip.active{background:#fff;color:#000}
+
+.videos{
+ flex:1;padding:16px;display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+ gap:18px 14px;align-content:start
+}
+.card{cursor:pointer}
+.thumb{position:relative;border-radius:12px;overflow:hidden;background:#222}
+.thumb img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:.3s}
+.card:hover .thumb img{transform:scale(1.05)}
+.time{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.8);padding:2px 6px;border-radius:4px;font-size:12px}
+.info{display:flex;gap:10px;padding:10px 0}
+.info img{width:36px;height:36px;border-radius:50%}
+.info h3{font-size:14px;line-height:18px;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;overflow:hidden}
+.info p{font-size:12px;color:#aaa;margin-top:4px}
+
+#player{
+ position:fixed;inset:0;background:#000;z-index:200;display:none;flex-direction:column
+}
+#player.active{display:flex}
+#player iframe{width:100%;flex:1;border:0}
+#close{position:absolute;top:15px;right:20px;background:#fff;color:#000;width:35px;height:35px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+
+@media(max-width:800px){
+ .sidebar{display:none}
+ .center .mic{display:none}
+ .videos{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="left">
+  <i class="fa-solid fa-bars"></i>
+  <div class="logo"><i class="fa-brands fa-youtube" style="color:red;font-size:28px"></i> YouTube <span style="font-size:10px;color:#aaa;margin-left:4px">PK</span></div>
+ </div>
+ <div class="center">
+  <input id="search" type="text" placeholder="Search">
+  <button onclick="doSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+  <div class="mic"><i class="fa-solid fa-microphone"></i></div>
+ </div>
+ <div class="right">
+  <i class="fa-solid fa-video"></i>
+  <i class="fa-regular fa-bell"></i>
+  <img src="https://i.pravatar.cc/100?img=12" alt="">
+ </div>
+</header>
+
+<div class="layout">
+ <div class="sidebar">
+  <div class="item active"><i class="fa-solid fa-house"></i> Home</div>
+  <div class="item"><i class="fa-solid fa-bolt"></i> Shorts</div>
+  <div class="item"><i class="fa-solid fa-tv"></i> Subscriptions</div><hr>
+  <div class="item"><i class="fa-solid fa-clock-rotate-left"></i> History</div>
+  <div class="item"><i class="fa-solid fa-list"></i> Playlists</div>
+  <div class="item"><i class="fa-solid fa-clock"></i> Watch Later</div>
+  <div class="item"><i class="fa-solid fa-thumbs-up"></i> Liked videos</div><hr>
+  <h4>Subscriptions</h4>
+  <div class="item"><img src="https://i.pravatar.cc/40?img=1" style="width:24px;border-radius:50%"> Ali Coder</div>
+  <div class="item"><img src="https://i.pravatar.cc/40?img=2" style="width:24px;border-radius:50%"> Code With Harry</div>
+ </div>
+
+ <div style="flex:1">
+  <div class="chips" id="chips">
+   <div class="chip active" onclick="filterChip(this,'all')">All</div>
+   <div class="chip" onclick="filterChip(this,'code')">Coding</div>
+   <div class="chip" onclick="filterChip(this,'music')">Music</div>
+   <div class="chip" onclick="filterChip(this,'gaming')">Gaming</div>
+   <div class="chip" onclick="filterChip(this,'html')">HTML CSS</div>
+   <div class="chip" onclick="filterChip(this,'js')">JavaScript</div>
+   <div class="chip" onclick="filterChip(this,'podcast')">Podcasts</div>
+  </div>
+  <div class="videos" id="videoGrid"></div>
+ </div>
+</div>
+
+<div id="player">
+ <div id="close" onclick="closePlayer()"><i class="fa-solid fa-xmark"></i></div>
+ <iframe id="ytframe" allowfullscreen></iframe>
+</div>
+
+<script>
+const videos = [
+ {id:"kUMe1FH4CHE",title:"Ali Coder - How I Started YouTube in Black Suit Setup",channel:"Ali Coder",views:"15K",time:"2 days ago",cat:"code",thumb:"https://img.youtube.com/vi/kUMe1FH4CHE/maxresdefault.jpg"},
+ {id:"dQw4w9WgXcQ",title:"Learn HTML CSS in 1 Hour - Full Course For Beginners",channel:"Ali Coder",views:"120K",time:"5 days ago",cat:"html",thumb:"https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"},
+ {id:"PkZNo7MFNFg",title:"JavaScript Full Course - Master JS in 4 Hours",channel:"Ali Coder",views:"89K",time:"1 week ago",cat:"js",thumb:"https://img.youtube.com/vi/PkZNo7MFNFg/maxresdefault.jpg"},
+ {id:"jS4aFq5-91M",title:"YouTube Studio Setup Under 5000 - My Real Setup Tour",channel:"Ali Coder",views:"45K",time:"3 days ago",cat:"podcast",thumb:"https://img.youtube.com/vi/jS4aFq5-91M/maxresdefault.jpg"},
+ {id:"hT_nvWreIhg",title:"Build YouTube Clone with HTML CSS JS - Full Project",channel:"Ali Coder",views:"32K",time:"1 day ago",cat:"code",thumb:"https://img.youtube.com/vi/hT_nvWreIhg/maxresdefault.jpg"},
+ {id:"9bZkp7q19f0",title:"Best Coding Music Mix - LoFi Hip Hop to Code To",channel:"Lofi Girl",views:"2M",time:"1 month ago",cat:"music",thumb:"https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg"},
+]
+
+const grid = document.getElementById("videoGrid")
+function render(list){
+ grid.innerHTML=""
+ list.forEach(v=>{
+  grid.innerHTML+=`
+  <div class="card" onclick="playVideo('${v.id}')">
+   <div class="thumb">
+    <img src="${v.thumb}" alt="">
+    <span class="time">12:24</span>
+   </div>
+   <div class="info">
+    <img src="https://i.pravatar.cc/100?img=${Math.floor(Math.random()*20)+1}">
+    <div>
+     <h3>${v.title}</h3>
+     <p>${v.channel}</p>
+     <p>${v.views} views • ${v.time}</p>
+    </div>
+   </div>
+  </div>`
+ })
+}
+render(videos)
+
+function playVideo(id){
+ document.getElementById("ytframe").src=`https://www.youtube.com/embed/${id}?autoplay=1`
+ document.getElementById("player").classList.add("active")
+}
+function closePlayer(){
+ document.getElementById("player").classList.remove("active")
+ document.getElementById("ytframe").src=""
+}
+function doSearch(){
+ let q=document.getElementById("search").value.toLowerCase()
+ let filtered=videos.filter(v=>v.title.toLowerCase().includes(q))
+ render(filtered)
+}
+function filterChip(el,cat){
+ document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"))
+ el.classList.add("active")
+ if(cat=="all") render(videos)
+ else render(videos.filter(v=>v.cat==cat))
+}
+document.getElementById("search").addEventListener("keyup",e=>{
+ if(e.key=="Enter") doSearch()
+})
+</script>
+</body>
+</html>
